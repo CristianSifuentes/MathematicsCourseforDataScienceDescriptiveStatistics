@@ -8,12 +8,12 @@ X, y = datasets.load_diabetes(return_X_y=True)
 raw = X[:, None, 2]
 
 
-# escalamiento max-min
+#escalamiento max-min
 max_raw = max(raw)
 min_raw = min(raw)
 scaled = (2*raw - max_raw -min_raw)/(max_raw - min_raw)
 
-# normalización Z-score
+#normalización Z-score
 
 avg = np.average(raw)
 std = np.std(raw)
@@ -26,7 +26,7 @@ axs[1].hist(scaled)
 axs[2].hist(z_scaled)
 
 
-# modelos para entrenamiento
+#modelos para entrenamiento
 def train_raw():
     linear_model.LinearRegression().fit(raw, y)
 
