@@ -5,7 +5,7 @@ import os
 
 df = pd.read_csv(os.path.join(os.path.dirname(__file__), "../MathematicsCourseforDataScienceDescriptiveStatistics/cars.csv"))
 
-# Desviación estandar
+# Standard deviation
 print(df['price_usd'].std())
 
 # Rango = valor max - valor min
@@ -25,9 +25,8 @@ iqr = Q3 - Q1
 print(iqr)
 
 
-# Límites para detección de outliers (datos simetricamente distribuidos)
-
-# Datos entre Q1 −1.5 × IQR y Q3 +1.5 x IQR
+# Limits for outlier detection (symmetrically distributed data)
+# Data between Q1 −1.5 × IQR y Q3 +1.5 x IQR
 
 minlimit = Q1 - 1.5*iqr
 maxlimit = Q3 + 1.5*iqr
@@ -40,6 +39,6 @@ sns.histplot(df['price_usd'], ax=ax_hist)
 sns.boxplot(df['price_usd'], ax=ax_box)
 ax_hist.set(xlabel='')
 
-# Es posible calcular varios box-plot separando por una cierta variable categórica:
+# It is possible to calculate several box-plots separated by a certain categorical variable:
 
 sns.boxplot(x = 'engine_fuel', y = 'price_usd', data = df)
