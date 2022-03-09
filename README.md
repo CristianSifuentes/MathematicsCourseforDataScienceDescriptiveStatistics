@@ -1,8 +1,11 @@
 # MathematicsCourseforDataScienceDescriptiveStatistics
+'https://github.com/ekalinin/github-markdown-toc/edit/master/README.md'
+## Required
 
+Installation:
 
-pip install pandas
-pip install seaborn
+    pip install pandas pip install seaborn
+
 
 
 ## Description
@@ -16,13 +19,84 @@ In this repository we can see what is the general propose for descriptive statis
 
 Descriptive statistics for Data Science.
 
-- [Linear Functions](#linear-functions)
+<!--ts-->
+   * [What is descriptive statistics for?](#what-is-descriptive-statistics-for)
+      * [Descriptive statistics vs statistics inference](#descriptive-statistics-vs-statistics-inference)
+      * [Why learn statistics?](#why-learn-statistics)
+      * [Workflow in data science](#workflow-in-data-science)
+      * [Flow](#flow)
+   * [Tests](#tests)
+   * [Dependency](#dependency)
+   * [Docker](#docker)
+     * [Local](#local)
+     * [Public](#public)
+<!--te-->
 
-## Linear Functions
 
-Tiene la forma de $$f(x)=mx + b$$ donde $m$ y $b$  $\in R$.
 
-$m$ puede ser calculada por: $$m=\frac{y_{2}-y_{1}}{x_{2}-x_{1}}$$
+What is descriptive statistics for?
+============
 
-y $b$ es el punto de corte con el eje $y$. Su dominio es $Dom_{f} = (-\infty, \infty)$. Su imagen es $Im_{f} = (-\infty, \infty)$
+La estadística descriptiva sirve para 2 cosas:
 
+Anális exploratorio de la información.
+Preprocesamiento de la información antes de tener un modelo de machine learning.
+
+Descriptive Statistics vs Statistics inference
+============
+
+Estadística descriptiva: resumir un historial de datos.
+
+Estadística inferencial: predecir con datos.
+
+
+STDIN
+-----
+
+Here's an example of TOC creating for markdown from STDIN:
+
+```bash
+➥ cat ~/projects/Dockerfile.vim/README.md | ./gh-md-toc -
+  * [Dockerfile.vim](#dockerfilevim)
+  * [Screenshot](#screenshot)
+  * [Installation](#installation)
+        * [OR using Pathogen:](#or-using-pathogen)
+        * [OR using Vundle:](#or-using-vundle)
+  * [License](#license)
+```
+
+Why learn statistics?
+-----------
+
+Here's an example of TOC creating for a local README.md:
+
+```bash
+➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
+```
+
+Workflow in data science
+-----------
+
+Here's an example of TOC creating for a local README.md:
+
+```bash
+➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
+```
+
+Flow
+-----------
+
+Here's an example of TOC creating for a local README.md:
+
+```bash
+➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
+```
+
+Flow
+-----------
+
+Here's an example of TOC creating for a local README.md:
+
+```bash
+➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
+```
