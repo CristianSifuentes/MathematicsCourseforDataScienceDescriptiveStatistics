@@ -169,7 +169,7 @@ It is always used in exploratory data analysis.
 
 Covariance matrix in Python
 -----------
-```bash
+```python
  
 import numpy as np
 import matplotlib.pyplot as plt
@@ -179,7 +179,7 @@ from sklearn.preprocessing import StandardScaler
 iris = sns.load_dataset('iris')
 ```
 
-```bash
+```python
  
 sns.pairplot(iris, hue='species') ##this graph is useless if there are too many variables
 
