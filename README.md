@@ -155,3 +155,32 @@ Application and Notes in Python (Deepnote)
 ```bash
 ➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
 ```
+
+
+Covariance matrix
+-----------
+
+When there are many variables (which is usually the case), all possible covariances of the pairs of data in the dataset must be calculated. The result of this calculation, represented in a matrix, is the covariance matrix.
+
+>>>>>>>>> IMAGE
+
+It is always used in exploratory data analysis.
+
+
+Covariance matrix in Python
+-----------
+```bash
+ 
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.preprocessing import StandardScaler 
+
+iris = sns.load_dataset('iris')
+```
+
+```bash
+ 
+sns.pairplot(iris, hue='species') ##this graph is useless if there are too many variables
+
+```
