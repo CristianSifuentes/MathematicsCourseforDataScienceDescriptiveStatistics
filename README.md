@@ -162,7 +162,7 @@ Covariance matrix
 
 When there are many variables (which is usually the case), all possible covariances of the pairs of data in the dataset must be calculated. The result of this calculation, represented in a matrix, is the covariance matrix.
 
->>>>>>>>> IMAGE
+![Alt text](/images/covariance-matrix.png?raw=true "Covariance matrix")
 
 It is always used in exploratory data analysis.
 
