@@ -22,14 +22,35 @@ Descriptive statistics for Data Science.
 <!--ts-->
    * [What is descriptive statistics for?](#what-is-descriptive-statistics-for)
       * [Descriptive statistics vs statistics inference](#descriptive-statistics-vs-statistics-inference)
-      * [Why learn statistics?](#why-learn-statistics)
+        * [Why learn statistics?](#why-learn-statistics)
       * [Workflow in data science](#workflow-in-data-science)
-      * [Flow](#flow)
-   * [Tests](#tests)
-   * [Dependency](#dependency)
-   * [Docker](#docker)
-     * [Local](#local)
-     * [Public](#public)
+        * [Flow](#flow)
+   * [Descriptive statistics for analytics](#descriptive-statistics-for-analytics)
+      * [Data types in inferential statistics](#data-types-in-inferential-statistics)
+      * [Measures of central tendency](#measures-of-central-tendency)
+        * [Mean or average → mean(df)](#mean-or-average→mean(df))
+        * [Median → median(df)](#median→median(df))
+        * [Mode](#mode)
+        * [Application and Notes in Python (Deepnote)](#application-and-notes-in-python-(deepnote))
+      * [Measures of dispersion](#measures-of-dispersion)
+        * [Standard deviation](#standard-deviation)
+        * [Dispersion measures in Python](#dispersion-measures-in-python)
+        * [Limits for outlier detection (with symmetrically distributed data)](#limits-for-outlier-detection-(with-symmetrically-distributed-data))
+      * [Visual exploration of data](#visual-exploration-of-data)  
+        * [Scatter Plots in Data Analysis](#scatter-plots-in-data-analysis)
+   * [Statistics on data ingestion](#statistics-on-data-ingestion)
+      * [Processing pipelines for numeric variables](#processing-pipelines-for-numeric-variables)
+        * [Linear scaling](#mode)
+        * [Linear Scaling Types](#mode)
+        * [Linear transformations in Python](#mode)
+        * [Nonlinear transformation](#mode)
+        * [Nonlinear transformations in Python](#mode)
+      * [Processing pipelines for categorical variables](#Processing-pipelines-for-categorical-variables)
+        * [Categorical Data Processing in Python](#categorical-data-processing-in-python)
+      * [Correlations: covariance and correlation coefficient](#correlations:-covariance-and-correlation-coefficient)  
+        * [Covariance matrix](#covariance-matrix)
+        * [Covariance matrix in Python](#covariance-matrix-in-python)
+   * [Bonus: Pandas and Seaborn commands used in the course](#Bonus:-Pandas-and-Seaborn-commands-used-in-the-course)      
 <!--te-->
 
 
@@ -49,21 +70,6 @@ Estadística descriptiva: resumir un historial de datos.
 
 Estadística inferencial: predecir con datos.
 
-
-STDIN
------
-
-Here's an example of TOC creating for markdown from STDIN:
-
-```bash
-➥ cat ~/projects/Dockerfile.vim/README.md | ./gh-md-toc -
-  * [Dockerfile.vim](#dockerfilevim)
-  * [Screenshot](#screenshot)
-  * [Installation](#installation)
-        * [OR using Pathogen:](#or-using-pathogen)
-        * [OR using Vundle:](#or-using-vundle)
-  * [License](#license)
-```
 
 Why learn statistics?
 -----------
@@ -92,11 +98,60 @@ Here's an example of TOC creating for a local README.md:
 ➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
 ```
 
-Flow
+Descriptive statistics for analytics
+============
+
+Data types in inferential statistics
 -----------
 
 Here's an example of TOC creating for a local README.md:
 
+```bash
+➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
+```
+
+
+Measures of central tendency
+-----------
+
+Here's an example of TOC creating for a local README.md:
+
+```bash
+➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
+```
+
+Mean or average → mean(df)
+-----------
+
+Here's an example of TOC creating for a local README.md:
+
+```bash
+➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
+```
+
+Mean or average → mean(df)
+-----------
+
+Median → median(df
+
+```bash
+➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
+```
+
+Mean or average → mean(df)
+-----------
+```bash
+➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
+```
+
+Mode
+-----------
+```bash
+➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
+```
+
+Application and Notes in Python (Deepnote)
+-----------
 ```bash
 ➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
 ```
