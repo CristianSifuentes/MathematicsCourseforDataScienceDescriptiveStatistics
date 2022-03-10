@@ -157,6 +157,50 @@ Application and Notes in Python (Deepnote)
 ```
 
 
+Nonlinear transformation
+-----------
+
+When the data is not symmetric or uniform, but is very skewed, a transformation is applied so that they have a symmetric distribution and linear scaling can be applied.
+
+There are different types of nonlinear functions: logarithms, sigmoids, polynomials, etc. These functions can be applied to the data to transform it and make it homogeneous.
+
+Tanh(x)
+
+The tanh is always in a range from -1 to 1 in Y, so when the values ​​of X are very high, they will be very close to |1|. You could also calibrate the data to fit the curve by dividing it by a parameter a.
+
+
+Nonlinear transformations in Python
+-----------
+
+```python
+df = pd.read_csv('cars.csv')
+
+```
+
+
+```python
+# Here it can be seen how the distribution is strongly skewed
+df.price_usd.hist()
+
+
+```
+![Alt text](/Images/heavily-biased.png?raw=true "heavily-biased")
+
+
+```python
+# Transformation with tanh(x)
+
+# This line takes the column and applies it to an entire math function
+p = 10000
+df.price_usd.apply(lambda x: np.tanh(x/p)).hist()
+```
+![Alt text](/Images/apply.png?raw=true "apply")
+
+
+In this documentation you will find several ways to do those non-linear transformations. That way you can apply the functions that Scikit Learn brings to make the transformations.
+
+Map data to a Gaussian distribution: https://scikit-learn.org/stable/auto_examples/preprocessing/plot_map_data_to_normal.html
+
 
 Processing pipelines for categorical variables
 ============
