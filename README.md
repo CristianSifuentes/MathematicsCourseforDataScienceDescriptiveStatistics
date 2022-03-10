@@ -47,7 +47,7 @@ Descriptive statistics for Data Science.
         * [Nonlinear transformations in Python](#mode)
       * [Processing pipelines for categorical variables](#Processing-pipelines-for-categorical-variables)
         * [Categorical Data Processing in Python](#categorical-data-processing-in-python)
-      * [Correlations: covariance and correlation coefficient](#correlations:-covariance-and-correlation-coefficient)  
+      * [Covariance and correlation coefficient](#covariance-and-correlation-coefficient)  
         * [Covariance matrix](#covariance-matrix)
         * [Covariance matrix in Python](#covariance-matrix-in-python)
    * [Bonus: Pandas and Seaborn commands used in the course](#Bonus:-Pandas-and-Seaborn-commands-used-in-the-course)      
@@ -64,7 +64,7 @@ Anális exploratorio de la información.
 Preprocesamiento de la información antes de tener un modelo de machine learning.
 
 Descriptive Statistics vs Statistics inference
-============
+-----------
 
 Estadística descriptiva: resumir un historial de datos.
 
@@ -156,6 +156,22 @@ Application and Notes in Python (Deepnote)
 ➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
 ```
 
+
+Covariance and correlation coefficient
+============
+If 2 variables are correlated, they would be providing the same information, so it would not be useful to have the 2 variables in the model if their correlation is very high.
+
+The way to find the correlations is using the covariance:
+
+![Alt text](/Images/covariance.png?raw=true "Covariance")
+
+But since the scales of X and Y can be different, then the correlation coefficient (ρ) is used:
+
+![Alt text](/Images/correlation-coefficient.png?raw=true "Correlation coefficient")
+
+The higher the correlation coefficient (closer to 1), the higher the correlation and vice versa (closer to 0), and if the value is close to -1, then there is an inverse correlation:
+
+![Alt text](/Images/inverse-correlation.png?raw=true "Inverse-correlation")
 
 Covariance matrix
 -----------
