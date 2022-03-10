@@ -45,7 +45,7 @@ Descriptive statistics for Data Science.
         * [Linear transformations in Python](#mode)
         * [Nonlinear transformation](#mode)
         * [Nonlinear transformations in Python](#mode)
-      * [Processing pipelines for categorical variables](#Processing-pipelines-for-categorical-variables)
+      * [Processing pipelines for categorical variables](#processing-pipelines-for-categorical-variables)
         * [Categorical Data Processing in Python](#categorical-data-processing-in-python)
       * [Covariance and correlation coefficient](#covariance-and-correlation-coefficient)  
         * [Covariance matrix](#covariance-matrix)
@@ -155,6 +155,97 @@ Application and Notes in Python (Deepnote)
 ```bash
 ➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
 ```
+
+
+
+Processing pipelines for categorical variables
+============
+When you have categorical variables, you do a numerical mapping. For that there are 2 methods, so that they are easily interpretable in machine learning models:
+
+Dummy: it is the most compact representation that can be had of the data. It is best used when the inputs are linearly independent variables (they do not have a significant degree of correlation). That is, when the categories are known to be independent of each other.
+One-hot: it is more extensive. Allows you to include categories that were not in the dataset initially. So that if a category is filtered that was not included, it can still be represented numerically and not as an error in the model (this model is cooler and is the one used).
+There are bugs in Pandas notation and they treat them as both models being the same, but in reality the Dummy is not used. Still, in Pandas the method is .get_dummies().
+
+Application example of both:
+
+![Alt text](/Images/dummy-one-hot.png?raw=true "dummy one-hot")
+
+
+Categorical Data Processing in Python
+-----------
+```python
+import pandas as pd
+
+df = pd.read_csv('cars.csv')
+```
+Pandas dummies documentation: https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html
+
+```python
+pd.get_dummies(df['engine_type'])
+
+| Primer encabezado | Segundo encabezado |
+| ------------- | ------------- |
+| Contenido de la celda  | Contenido de la celda  |
+| Contenido de la celda  | Contenido de la celda  |
+
+```
+
+
+
+One-hot documentation with Scikit:  https://scikit-learn.org/stable/modules/preprocessing.html#encoding-categorical-features
+
+```python
+import sklearn.preprocessing as preprocessing
+
+encoder = preprocessing.OneHotEncoder(handle_unknown='ignore')
+```
+
+```python
+encoder.fit(df[['engine_type']].values)
+
+OneHotEncoder(handle_unknown='ignore')
+```
+
+```python
+encoder.transform([['gasoline'],['diesel'], ['aceite']]).toarray()
+
+array([[0., 0., 1.],
+       [1., 0., 0.],
+       [0., 0., 0.]])
+
+```
+
+Discrete numeric variables (integers) can also be encoded as categorical
+
+
+```python
+encoder.fit(df[['year_produced']].values)
+
+OneHotEncoder(handle_unknown='ignore')
+```
+
+```python
+encoder.transform([[2016], [2009], [190]]).toarray()
+
+array([[0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]])
+
+
+
+```
+
+In this case, the dimensionality of the dataset is affected too much, so we must seek to reduce the data.
+
 
 
 Covariance and correlation coefficient
