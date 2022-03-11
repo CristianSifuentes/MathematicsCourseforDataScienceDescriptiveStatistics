@@ -40,11 +40,11 @@ Descriptive statistics for Data Science.
         * [Scatter Plots in Data Analysis](#scatter-plots-in-data-analysis)
    * [Statistics on data ingestion](#statistics-on-data-ingestion)
       * [Processing pipelines for numeric variables](#processing-pipelines-for-numeric-variables)
-        * [Linear scaling](#mode)
-        * [Linear Scaling Types](#mode)
-        * [Linear transformations in Python](#mode)
-        * [Nonlinear transformation](#mode)
-        * [Nonlinear transformations in Python](#mode)
+        * [Linear scaling](#linear-scaling)
+        * [Linear Scaling Types](#linear-scaling-types)
+        * [Linear transformations in Python](#linear-transformations-in-python)
+        * [Nonlinear transformation](#nonlinear-transformation)
+        * [Nonlinear transformations in Python](#nonlinear-transformations-in-python)
       * [Processing pipelines for categorical variables](#processing-pipelines-for-categorical-variables)
         * [Categorical Data Processing in Python](#categorical-data-processing-in-python)
       * [Covariance and correlation coefficient](#covariance-and-correlation-coefficient)  
@@ -156,6 +156,90 @@ Application and Notes in Python (Deepnote)
 ➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
 ```
 
+Statistics on data ingestion
+============
+
+Processing pipelines for numeric variables
+-----------
+
+Linear scaling
+-----------
+
+It is important to normalize the data (do linear scaling), before passing it through a machine learning model. This is because the models are efficient if they are in the same range [-1, 1]. If they are not in that range, they have to be transformed (scaled).
+
+There are different types of linear scaling (max-min, Clipping, Z-score, Winsorizing, etc.). They are normally used when the data is symmetric or uniformly distributed.
+
+
+Linear Scaling Types
+-----------
+* Min-max: Makes a transformation so that the data falls into the range [-1, 1] by means of a formula. It is one of the most used. It works best for uniformly distributed data.
+* Clipping: forces the data that is out of the range to be transformed into data within it. This method is not highly recommended because it discards outlier values ​​that may be working fine.
+* Winsorizing: A variation of clipping that uses the quartiles as endpoints.
+* Z-Score: it is one of the most common because it is based on the average and standard deviation. It works best for "normally" distributed (Gaussian bell shaped) data.
+
+
+![Alt text](/Images/linear-scaling-types.png?raw=true "Linear Scaling Types")
+
+-----------
+
+This dataset from scikit-learn will be used: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html
+
+```python
+import timeit #para medir el tiempo de ejecución de los modelos
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn import datasets, linear_model #datasets para descargar un modelo y linear_model para hacer una regresión lineal
+
+X, y = datasets.load_diabetes(return_X_y=True) #carga el dataset
+raw = X[:, None, 2] #transformación en las dimensiones para que se ajuste al formato de entrada del 
+
+```
+```python
+#reglas de escalamiento lineal, aplicamos max-min
+max_raw = max(raw)
+#raw = datos crudos
+min_raw = min(raw)
+scaled = (2*raw - max_raw - min_raw)/(max_raw - min_raw)
+
+# es importante tener una noción de los datos originales antes y después de escalarlos:
+fig, axs = plt.subplots(2, 1, sharex=True)
+axs[0].hist(raw)
+axs[1].hist(scaled)
+
+```
+
+```python
+(array([32., 66., 98., 90., 64., 50., 23., 12.,  5.,  2.]),
+ array([-1. , -0.8, -0.6, -0.4, -0.2,  0. ,  0.2,  0.4,  0.6,  0.8,  1. ]),
+ <BarContainer object of 10 artists>)s
+```
+
+![Alt text](/Images/linear-transformations-in-python.png?raw=true "linear transformations in python")
+
+
+```python
+# modelos para entrenamiento
+def train_raw():
+    linear_model.LinearRegression().fit(raw, y)
+
+def train_scaled():
+    linear_model.LinearRegression().fit(scaled, y)
+```
+
+```python
+raw_time = timeit.timeit(train_raw, number=100) #repite la ejecución del código 100 veces y sobre eso calcula el tiempo
+scaled_time = timeit.timeit(train_scaled, number=100)
+print(f'train raw: {raw_time}')
+print(f'train scaled: {scaled_time}')
+```
+
+It can be seen how by normalizing the data, the algorithm becomes more efficient.
+
+Scikit Learn has a preprocessing part, in its documentation you will find how to standardize numerical and categorical data.
+
+Scikit Learn Utilities: https://scikit-learn.org/stable/modules/preprocessing.html
+
 
 Nonlinear transformation
 -----------
@@ -167,6 +251,14 @@ There are different types of nonlinear functions: logarithms, sigmoids, polynomi
 Tanh(x)
 
 The tanh is always in a range from -1 to 1 in Y, so when the values ​​of X are very high, they will be very close to |1|. You could also calibrate the data to fit the curve by dividing it by a parameter a.
+
+![Alt text](/Images/Tanh.png?raw=true "tanh")
+
+Square root
+
+Other polynomial functions, for example the square root (x½), can also cause a distribution to normalize.
+
+![Alt text](/Images/square-root.png?raw=true "square root")
 
 
 Nonlinear transformations in Python
