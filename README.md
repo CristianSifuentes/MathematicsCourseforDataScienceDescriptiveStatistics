@@ -156,6 +156,79 @@ Application and Notes in Python (Deepnote)
 ➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
 ```
 
+Visual exploration of data
+-----------
+You have to know which graph is the correct one to show the data in question.
+
+This page has all the graphics and explains what each of them consists of and gives real usage examples. It also allows you to classify them based on inputs and forms.
+
+Link: https://datavizproject.com/
+
+
+Scatter Plots in Data Analysis
+-----------
+
+For this, we will work with a new classic dataset. It is iris and what it brings is data on special attributes of flowers called irises, they come in 3 different species. The dataset comes by default in seaborn.
+
+```python
+import pandas as pd
+import seaborn as sns
+
+iris = sns.load_dataset('iris')
+iris.head()
+
+| Primer encabezado | Segundo encabezado |
+| ------------- | ------------- |
+| Contenido de la celda  | Contenido de la celda  |
+| Contenido de la celda  | Contenido de la celda  |
+
+```
+
+
+Scatter plot documentation: http://seaborn.pydata.org/generated/seaborn.scatterplot.html
+
+```python
+sns.scatterplot(data=iris, x='sepal_length', y='petal_length', hue='species')
+
+```
+
+
+![Alt text](/Images/scatterplot.png?raw=true "scatterplot")
+
+Jointplot muestra un scatterplot y la distribución de los datos.
+
+Documentación de jointplot: http://seaborn.pydata.org/generated/seaborn.jointplot.html
+
+
+
+```python
+sns.jointplot(data=iris, x='sepal_length', y='petal_length', hue='species')
+
+```
+
+
+![Alt text](/Images/jointplot.png?raw=true "jointplot")
+
+
+box plot documentation: http://seaborn.pydata.org/generated/seaborn.boxplot.html
+
+```python
+sns.boxplot(data=iris, x='species', y='sepal_length')
+
+```
+
+![Alt text](/Images/boxplot.png?raw=true "boxplot")
+
+
+
+```python
+sns.barplot(data=iris, x='species', y='sepal_length')
+
+```
+
+![Alt text](/Images/barplot.png?raw=true "barplot")
+
+
 Statistics on data ingestion
 ============
 
