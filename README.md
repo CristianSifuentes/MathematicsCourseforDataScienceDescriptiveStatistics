@@ -35,7 +35,7 @@ Descriptive statistics for Data Science.
       * [Measures of dispersion](#measures-of-dispersion)
         * [Standard deviation](#standard-deviation)
         * [Dispersion measures in Python](#dispersion-measures-in-python)
-        * [Limits for outlier detection (with symmetrically distributed data)](#limits-for-outlier-detection-(with-symmetrically-distributed-data))
+        * [Limits for outlier detection with symmetrically distributed data](#limits-for-outlier-detection-with-symmetrically-distributed-data)
       * [Visual exploration of data](#visual-exploration-of-data)  
         * [Scatter Plots in Data Analysis](#scatter-plots-in-data-analysis)
    * [Statistics on data ingestion](#statistics-on-data-ingestion)
@@ -155,6 +155,116 @@ Application and Notes in Python (Deepnote)
 ```bash
 ➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
 ```
+
+
+Measures of dispersion
+-----------
+* Range: spans from the minimum to the maximum in the data set (all data)
+* Interquartile range (IQR): 4 homogeneous subdivisions of the data
+* Standard deviation
+
+
+![Alt text](/Images/boxplot-diagram.png?raw=true "boxplot diagram")
+
+El diagrama de caja es la visualización para representar simplificadamente la dispersión de los datos en referencia a la mediana.
+
+Standard deviation
+-----------
+It is the most widely used measure of data dispersion. Mathematically it is the root mean squared error. When working with samples instead of the population, a correction is made by dividing for n-1.
+
+![Alt text](/Images/standard-deviation.png?raw=true "standard deviation")
+
+If the data follows a normal distribution, if all the data that are in a range of mean ± 3 * standard deviation is considered, 99.72% of the distribution data would be covered. Points that fall outside of that do not match the pattern and are known as outliers and are sometimes dumped. In other words, if the data is beyond 3*std, it is discarded.
+
+
+
+Dispersion measures in Python
+-----------
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('cars.csv')
+
+```
+
+Calcular la desviación estándar
+
+```python
+df['price_usd'].std()
+
+6428.1520182029035
+
+```
+```python
+#Rango = valor max - valor min
+rango = df['price_usd'].max() - df['price_usd'].min()
+49999.0
+
+```
+
+```python
+#Quartiles
+median = df['price_usd'].median()
+Q1 = df['price_usd'].quantile(q=0.25) #toma el primer 25% de todos los datos
+Q3 = df['price_usd'].quantile(q=0.75)
+min_val = df['price_usd'].quantile(q=0)
+max_val = df['price_usd'].quantile(q=1)
+print(min_val, Q1, median, Q3, max_val)
+
+1.0 2100.0 4800.0 8990.0 50000.0
+
+
+```
+
+
+```python
+iqr = Q3 - Q1
+iqr
+
+6890.0
+```
+
+Limits for outlier detection with symmetrically distributed data
+-----------
+
+
+```python
+minlimit = Q1 - 1.5*iqr
+maxlimit = Q3 + 1.3*iqr
+print(minlimit, maxlimit)
+
+-8235.0 17947.0
+
+```
+The value is negative because an equation of a symmetric distribution is being applied to a non-symmetric one.
+
+
+```python
+sns.histplot(df['price_usd'])
+
+
+```
+
+![Alt text](/Images/histplot.png?raw=true "histplot")
+
+
+```python
+sns.boxplot(df['price_usd'])
+
+```
+![Alt text](/Images/boxplot-usd.png?raw=true "boxplot-usd")
+
+
+```python
+sns.boxplot(x='engine_fuel', y='price_usd', data=df)
+
+```
+
+![Alt text](/Images/engine_fuel.png?raw=true "engine_fuel")
+
 
 Visual exploration of data
 -----------
