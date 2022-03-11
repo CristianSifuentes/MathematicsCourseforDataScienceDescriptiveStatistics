@@ -31,7 +31,7 @@ Descriptive statistics for Data Science.
         * [Mean or average → mean(df)](#mean-or-average→mean(df))
         * [Median → median(df)](#median→median(df))
         * [Mode](#mode)
-        * [Application and Notes in Python (Deepnote)](#application-and-notes-in-python-(deepnote))
+        * [Application and Notes in Python Deepnote](#application-and-notes-in-python-deepnote)
       * [Measures of dispersion](#measures-of-dispersion)
         * [Standard deviation](#standard-deviation)
         * [Dispersion measures in Python](#dispersion-measures-in-python)
@@ -150,12 +150,72 @@ Mode
 ➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
 ```
 
-Application and Notes in Python (Deepnote)
+Application and Notes in Python Deepnote
 -----------
-```bash
-➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md
+```python
+import pandas as pd
+
+df = pd.read_csv('cars.csv')
+```
+```python
+#Media
+df['price_usd'].mean()
+
+6639.971021255613
+
+
 ```
 
+```python
+#Mediana
+
+```
+```python
+#Grafico en pandas de un histograma de frecuencia
+df['price_usd'].plot.hist(bins=20) #bins da los intervalos de valores en los que se trazará el diagrama
+
+```
+![Alt text](/Images/plot_hist.png?raw=true "plot hist")
+
+
+Because there is a strong bias towards higher priced cars, the median performs better than the mean.
+
+It is more interesting to analyze the prices by brands:
+
+* Pro tip: usar seaborn
+
+```python
+import seaborn as sns
+
+#distribution plot para hacer un histograma con las marcas de carros
+sns.displot(df, x='price_usd', hue='manufacturer_name') #hue crea un histograma por cada una de las catego
+
+```
+![Alt text](/Images/histograma.png?raw=true "histograma")
+
+```python
+#Histograma, de barras apiladadf con el tipo de combustible que necesitan
+sns.displot(df, x='price_usd', hue='engine_type', multiple='stack')
+
+```
+![Alt text](/Images/histograma_barras.png?raw=true "histograma_barras.")
+
+
+Electric cars are not seen, so you have to count how many there are
+
+```python
+df.groupby('engine_type').count()
+
+table 
+```
+Filters can be applied to inspect a specific brand
+
+```python
+Q7_df = df[(df['manufacturer_name'] == 'Audi') & (df['model_name'] == 'Q7')]
+sns.histplot(Q7_df, x='price_usd', hue='year_produced')
+ 
+```
+![Alt text](/Images/Q7_df.png?raw=true "Q7_df.")
 
 Measures of dispersion
 -----------
